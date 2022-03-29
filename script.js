@@ -9,12 +9,36 @@ function verificar() {
   } else {
     const sexo = document.getElementsByName('sex')
     const idade = ano - Number(form.value) //ano atual menos ano digitado pelo usuario
+    const img = document.createElement('img')
+    img.setAttribute('id', 'img')
 
     if (sexo[0].checked) {
       genero = 'Homem'
+
+      if (idade >=0 && idade < 10) { // CRIANCA
+        img.setAttribute('src', 'img/foto-bebe-m.png')
+      } else if (idade < 21) {   // JOVEM
+        img.setAttribute('src', 'img/foto-jovem-m.png')
+      } else if (idade < 50) { // ADULTO
+        img.setAttribute('src', 'img/foto-adulto-m.png')
+      } else { // IDOSO
+        img.setAttribute('src', 'img/foto-idoso-m.png')
+      }
+
     } else {
       genero = 'Mulher'
+      if (idade <=0 && idade <10) {
+        // CRIANCA
+      } else if (idade <21) {
+        // JOVEM
+      } else if (idade < 50) {
+        // ADULTO
+      } else {
+        // IDOSO
+      }
     }
-    resul.innerHTML = `Detectamos ${genero} com ${idade} anos`
+    resul.style.textAlign = 'center'
+    resul.innerHTML = `<p>Detectamos ${genero} com ${idade} anos</p>`
+    resul.appendChild(img)
   }
 }
